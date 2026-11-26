@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: 26 126 84;       /* hijau LaporWarga */
+  --accent-soft: 236 250 243;
+}
+.theme-citizen { --accent: 26 126 84; --accent-soft: 236 250 243; }
+.theme-officer { --accent: 3 105 161; --accent-soft: 236 246 253; }
+.theme-admin   { --accent: 79 70 229; --accent-soft: 238 240 255; }
+
+html { -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+body {
+  @apply bg-slate-50 text-ink-900 antialiased;
+}
+
+@layer components {
+  .card { @apply rounded-2xl border border-slate-200/80 bg-white shadow-soft; }
+  .input {
+    @apply block w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-slate-400
+      outline-none transition focus:border-accent focus:ring-4 focus:ring-accent/15 disabled:bg-slate-100;
+  }
+  .label { @apply mb-1.5 block text-sm font-semibold text-ink-700; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition
+      disabled:cursor-not-allowed disabled:opacity-60 focus:outline-none focus-visible:ring-4 focus-visible:ring-accent/25;
+  }
+  .btn-primary { @apply btn bg-accent text-white shadow-sm hover:bg-accent/90; }
+  .btn-secondary { @apply btn border border-slate-300 bg-white text-ink-700 hover:bg-slate-50; }
+  .btn-ghost { @apply btn text-ink-700 hover:bg-slate-100; }
+  .btn-danger { @apply btn bg-rose-600 text-white hover:bg-rose-700; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset; }
+}
+
+.leaflet-container { font-family: inherit; z-index: 0; }
+.lw-pin {
+  width: 30px; height: 30px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  background: rgb(var(--accent)); border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,.3);
+}

@@ -4,7 +4,6 @@ import { requireUser } from '@/lib/server/auth';
 import { analyticsFilters } from '@/lib/server/analytics';
 import { STATUS_LABEL } from '@/lib/server/reports';
 
-// Waktu tersimpan UTC; geser ke WIB sebelum dikelompokkan per periode.
 const LOCAL = "DATE_ADD(r.created_at, INTERVAL 7 HOUR)";
 const PERIOD = {
   day: `DATE_FORMAT(${LOCAL}, '%Y-%m-%d')`,

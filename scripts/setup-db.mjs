@@ -1,5 +1,3 @@
-// Membuat database, tabel, dan data awal (kategori + akun demo).
-// Jalankan: npm run db:setup
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -39,8 +37,6 @@ await conn.query(`USE \`${dbName}\``);
 await conn.query(fs.readFileSync(path.join(root, 'database', 'schema.sql'), 'utf8'));
 console.log(`✔ Database "${dbName}" dan tabel siap`);
 
-// Migrasi: beri kode acak 4 karakter pada nomor laporan format lama (LW-YYYYMMDD-0001 -> LW-YYYYMMDD-0001-K7QX)
-// agar nomor laporan tidak bisa ditebak berurutan. Aman dijalankan berulang.
 const ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 const code = () => Array.from({ length: 4 }, () => ALPHABET[crypto.randomInt(ALPHABET.length)]).join('');
 const [legacy] = await conn.query("SELECT id, report_number FROM reports WHERE report_number REGEXP '^LW-[0-9]{8}-[0-9]{4,}$'");

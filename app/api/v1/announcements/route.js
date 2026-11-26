@@ -7,7 +7,6 @@ import { serializeAnnouncement, validateAnnouncement } from '@/lib/server/announ
 
 export const dynamic = 'force-dynamic';
 
-// Publik: pengumuman yang terbit dan belum kedaluwarsa. Admin dengan ?all=true: semua pengumuman.
 export const GET = handle(async (req) => {
   rateLimit(`landing:${clientIp(req)}`, 120, 60 * 1000);
   const all = new URL(req.url).searchParams.get('all') === 'true';
@@ -16,7 +15,7 @@ export const GET = handle(async (req) => {
     const rows = await query('SELECT * FROM announcements ORDER BY created_at DESC');
     return ok(rows.map(serializeAnnouncement));
   }
-  const today = new Date(Date.now() + 7 * 3600000).toISOString().slice(0, 10); // tanggal WIB
+  const today = new Date(Date.now() + 7 * 3600000).toISOString().slice(0, 10);
   const rows = await query(
     `SELECT * FROM announcements WHERE is_published = 1 AND (expires_at IS NULL OR expires_at >= ?)
      ORDER BY created_at DESC LIMIT 6`,

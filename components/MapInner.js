@@ -22,7 +22,7 @@ function Recenter({ lat, lng }) {
 
 export default function MapInner({ lat, lng, onPick, height = 320, zoom = 16 }) {
   const has = lat != null && lng != null && !Number.isNaN(lat) && !Number.isNaN(lng);
-  const center = has ? [lat, lng] : [-2.5, 118]; // tengah Indonesia
+  const center = has ? [lat, lng] : [-2.5, 118];
   return (
     <MapContainer center={center} zoom={has ? zoom : 5} style={{ height, width: '100%' }} scrollWheelZoom={!!onPick}>
       <TileLayer

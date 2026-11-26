@@ -1,4 +1,3 @@
--- Skema database LaporWarga (MySQL / MariaDB XAMPP)
 SET NAMES utf8mb4;
 
 CREATE TABLE IF NOT EXISTS users (

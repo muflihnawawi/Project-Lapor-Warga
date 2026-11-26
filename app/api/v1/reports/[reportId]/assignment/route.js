@@ -15,7 +15,6 @@ async function findOfficer(id) {
   return officer;
 }
 
-// Tugaskan laporan verified yang belum memiliki petugas.
 export const POST = handle(async (req, { params }) => {
   const admin = await requireUser(req, ['admin']);
   const r = await findAccessibleReport(admin, params.reportId);
@@ -38,7 +37,6 @@ export const POST = handle(async (req, { params }) => {
   return ok(await serializeAssignment(id), 'Laporan berhasil ditugaskan', 201);
 });
 
-// Ganti petugas (alasan wajib) untuk laporan verified / in_progress.
 export const PUT = handle(async (req, { params }) => {
   const admin = await requireUser(req, ['admin']);
   const r = await findAccessibleReport(admin, params.reportId);

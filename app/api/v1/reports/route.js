@@ -9,7 +9,6 @@ import {
   REPORT_SELECT, buildReportFilters, serializeSummary, serializeDetail, getReportRow, validateReportFields, randomCode,
 } from '@/lib/server/reports';
 
-// GET /reports — cakupan data sesuai role pemanggil.
 export const GET = handle(async (req) => {
   const user = await requireUser(req);
   const sp = new URL(req.url).searchParams;
@@ -32,7 +31,7 @@ export const GET = handle(async (req) => {
 });
 
 function todayKey() {
-  const d = new Date(Date.now() + 7 * 3600000); // tanggal WIB
+  const d = new Date(Date.now() + 7 * 3600000);
   return d.toISOString().slice(0, 10).replace(/-/g, '');
 }
 
@@ -41,7 +40,6 @@ async function replay(reportId, user) {
   return ok(await serializeDetail(row, user), 'Laporan berhasil dikirim', 201, { 'Idempotent-Replayed': 'true' });
 }
 
-// POST /reports — kirim laporan baru (multipart + Idempotency-Key).
 export const POST = handle(async (req) => {
   const user = await requireUser(req, ['citizen']);
   rateLimit(`report:${user.id}`, 10, 60 * 1000);
@@ -54,7 +52,6 @@ export const POST = handle(async (req) => {
   const form = await readForm(req);
   const input = Object.fromEntries(['title', 'category_id', 'description', 'latitude', 'longitude', 'address', 'region'].map((k) => [k, form.get(k)]));
 
-  // Validasi field & foto, kumpulkan semua error field sekaligus.
   let data;
   let fieldErrors = {};
   try { data = await validateReportFields(input); } catch (e) { if (e.code !== 'VALIDATION_ERROR') throw e; fieldErrors = e.errors; }
@@ -63,7 +60,6 @@ export const POST = handle(async (req) => {
   if (Object.keys(fieldErrors).length) throw Errors.validation(fieldErrors);
   const photos = await readPhotos(files, { min: 1 });
 
-  // Hash isi permintaan untuk mendeteksi kunci sama dengan isi berbeda.
   const h = crypto.createHash('sha256');
   h.update(JSON.stringify([data.title, data.category_id, data.description, data.latitude, data.longitude, data.address, data.region ?? null]));
   for (const p of photos) h.update(p.buffer);
@@ -110,7 +106,6 @@ export const POST = handle(async (req) => {
     });
   } catch (e) {
     await removeFiles(saved);
-    // Dua permintaan bersamaan dengan kunci yang sama: kembalikan laporan pertama.
     if (e.code === 'ER_DUP_ENTRY') {
       const again = await queryOne('SELECT * FROM idempotency_keys WHERE user_id = ? AND idem_key = ?', [user.id, key]);
       if (again) {

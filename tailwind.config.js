@@ -1,4 +1,3 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./app/**/*.{js,jsx}', './components/**/*.{js,jsx}', './lib/**/*.{js,jsx}'],
   theme: {
@@ -12,7 +11,6 @@ module.exports = {
           500: '#289c69', 600: '#1a7e54', 700: '#166545', 800: '#145139', 900: '#124330',
         },
         ink: { 900: '#0f1d2b', 700: '#33475b', 500: '#64748b' },
-        // Warna aksen mengikuti role (diatur lewat CSS variable --accent).
         accent: 'rgb(var(--accent) / <alpha-value>)',
         'accent-soft': 'rgb(var(--accent-soft) / <alpha-value>)',
       },

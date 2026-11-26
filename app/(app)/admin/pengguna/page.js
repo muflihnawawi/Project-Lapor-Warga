@@ -20,7 +20,7 @@ export default function UsersPage() {
   const [search, setSearch] = useState('');
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
-  const [modal, setModal] = useState(null); // {mode:'create'|'edit', data}
+  const [modal, setModal] = useState(null);
   const [errors, setErrors] = useState({});
   const [busy, setBusy] = useState(false);
 

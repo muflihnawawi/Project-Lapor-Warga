@@ -5,10 +5,6 @@ import { LocateFixed, MapPinned, Wand2 } from 'lucide-react';
 import Map from '@/components/Map';
 import { Spinner } from '@/components/ui';
 
-/**
- * Pilih lokasi lewat GPS atau klik/geser penanda pada peta.
- * value: { latitude, longitude, address, region }
- */
 export default function LocationPicker({ value, onChange, errors = {} }) {
   const [gpsState, setGpsState] = useState('');
   const [geoBusy, setGeoBusy] = useState(false);
@@ -30,7 +26,6 @@ export default function LocationPicker({ value, onChange, errors = {} }) {
     );
   };
 
-  // Isi alamat otomatis dari titik peta (OpenStreetMap Nominatim) — opsional.
   const fillAddress = async () => {
     if (lat == null) return;
     setGeoBusy(true);
@@ -44,7 +39,6 @@ export default function LocationPicker({ value, onChange, errors = {} }) {
         region: a.suburb || a.village || a.city_district || a.town || value.region,
       });
     } catch {
-      /* abaikan, pengguna tetap dapat mengisi manual */
     }
     setGeoBusy(false);
   };

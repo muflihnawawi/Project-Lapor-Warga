@@ -65,7 +65,6 @@ function ReportList() {
         action={user.role === 'citizen' && <Link href="/laporan/baru" className="btn-primary"><FilePlus2 className="h-4 w-4" /> Buat Laporan</Link>}
       />
 
-      {/* Tab status cepat */}
       <div className="-mx-4 mb-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:px-0">
         {[['', 'Semua'], ...Object.entries(STATUS).map(([k, v]) => [k, v.label])].map(([k, label]) => (
           <button key={k || 'all'} onClick={() => setParam({ status: k })}

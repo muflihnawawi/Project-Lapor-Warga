@@ -19,7 +19,6 @@ function AuthProvider({ children }) {
     if (s?.user) setUser(s.user);
     setReady(true);
     if (s?.access_token) {
-      // Sinkronkan profil terbaru (role/nama) dari server.
       api('/me')
         .then((r) => {
           setUser(r.data);

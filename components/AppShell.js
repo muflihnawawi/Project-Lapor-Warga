@@ -12,7 +12,6 @@ import { Logo, Avatar, PageLoader } from '@/components/ui';
 import { api } from '@/lib/client/api';
 import { ROLE_LABEL } from '@/lib/client/constants';
 
-// Tampilan & menu berbeda untuk setiap role.
 const THEMES = {
   citizen: {
     panel: 'Portal Warga',
@@ -163,10 +162,8 @@ export default function AppShell({ children }) {
 
   return (
     <div className={`theme-${user.role} min-h-screen`}>
-      {/* Sidebar desktop */}
       <aside className="fixed inset-y-0 left-0 z-30 hidden lg:block">{sidebar}</aside>
 
-      {/* Sidebar mobile */}
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-slate-900/40" onClick={() => setOpen(false)} />
@@ -192,7 +189,6 @@ export default function AppShell({ children }) {
         <main className={`mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8 ${theme.mobile ? 'pb-28 lg:pb-8' : ''}`}>{children}</main>
       </div>
 
-      {/* Navigasi bawah khusus warga di ponsel */}
       {theme.mobile && (
         <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-slate-200 bg-white/95 backdrop-blur lg:hidden"
           style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>

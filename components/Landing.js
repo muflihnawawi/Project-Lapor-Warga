@@ -24,7 +24,6 @@ async function getJson(url) {
   return j.data;
 }
 
-/** Ubah jam menjadi teks yang mudah dibaca. */
 export function formatDuration(hours) {
   if (hours == null) return '—';
   if (hours < 1) return `${Math.max(1, Math.round(hours * 60))} menit`;
@@ -42,7 +41,6 @@ function SectionTitle({ eyebrow, title, desc, center }) {
   );
 }
 
-/* ================= Cek status laporan ================= */
 export function TrackBox() {
   const [number, setNumber] = useState('');
   const [busy, setBusy] = useState(false);
@@ -101,7 +99,6 @@ export function TrackBox() {
   );
 }
 
-/* ================= Statistik transparansi ================= */
 export function StatsSection() {
   const [s, setS] = useState(null);
   useEffect(() => { getJson('/api/v1/landing/stats').then(setS).catch(() => setS(false)); }, []);
@@ -166,7 +163,6 @@ export function StatsSection() {
   );
 }
 
-/* ================= Pengumuman ================= */
 export const ANN_TYPE = {
   info: { label: 'Informasi', Icon: Info, cls: 'bg-sky-50 text-sky-700 ring-sky-200' },
   perbaikan: { label: 'Jadwal Perbaikan', Icon: Wrench, cls: 'bg-orange-50 text-orange-700 ring-orange-200' },
@@ -218,7 +214,6 @@ export function AnnouncementsSection() {
   );
 }
 
-/* ================= Sudah diselesaikan ================= */
 function Photo({ src, label }) {
   return (
     <div className="relative h-40 flex-1 overflow-hidden bg-slate-100">
@@ -289,7 +284,6 @@ export function ResolvedSection({ reportHref }) {
   );
 }
 
-/* ================= Peta sebaran ================= */
 export function MapSection() {
   const [points, setPoints] = useState(null);
   const [filter, setFilter] = useState('');
@@ -337,7 +331,6 @@ export function MapSection() {
   );
 }
 
-/* ================= Panduan & FAQ ================= */
 const FAQ = [
   ['Bagaimana cara membuat laporan?', 'Daftar dan masuk sebagai warga, pilih "Buat Laporan", lalu isi judul, kategori, deskripsi, unggah minimal satu foto bukti, dan tentukan lokasi lewat GPS atau klik pada peta. Setelah terkirim, Anda mendapat nomor laporan.'],
   ['Tips memotret foto bukti yang baik', 'Ambil foto di siang hari dengan pencahayaan cukup. Tampilkan masalah secara jelas beserta patokan sekitar (papan nama jalan, bangunan). Format JPG atau PNG, maksimal 5 MB per foto, hingga 5 foto. Hindari memotret wajah orang atau pelat nomor kendaraan.'],

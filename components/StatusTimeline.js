@@ -4,7 +4,6 @@ import { Check, X } from 'lucide-react';
 import { STATUS, STATUS_FLOW, ROLE_LABEL, formatDateTime } from '@/lib/client/constants';
 import PhotoGallery from '@/components/PhotoGallery';
 
-/** Stepper kemajuan status laporan. */
 export function StatusStepper({ status }) {
   const rejected = status === 'rejected';
   const steps = rejected ? ['submitted', 'under_review', 'rejected'] : STATUS_FLOW;
@@ -36,7 +35,6 @@ export function StatusStepper({ status }) {
   );
 }
 
-/** Riwayat perubahan status (append-only). */
 export default function StatusTimeline({ history }) {
   return (
     <ol className="relative space-y-6 border-l-2 border-slate-100 pl-6">

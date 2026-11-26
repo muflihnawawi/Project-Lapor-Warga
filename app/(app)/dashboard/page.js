@@ -54,7 +54,6 @@ function RecentList({ title, items, emptyTitle, emptyDesc, action, showOfficer, 
   );
 }
 
-/* ---------------- MASYARAKAT ---------------- */
 function CitizenDashboard({ d, name }) {
   return (
     <div className="space-y-6">
@@ -120,7 +119,6 @@ function CitizenDashboard({ d, name }) {
   );
 }
 
-/* ---------------- PETUGAS ---------------- */
 function OfficerDashboard({ d, name }) {
   return (
     <div className="space-y-6">
@@ -170,7 +168,6 @@ function OfficerDashboard({ d, name }) {
   );
 }
 
-/* ---------------- ADMIN ---------------- */
 function AdminDashboard({ d, name }) {
   const maxCat = Math.max(1, ...d.by_category.map((c) => c.total));
   const total = Math.max(1, d.total_reports);

@@ -4,7 +4,6 @@ import { rateLimit } from '@/lib/server/rateLimit';
 
 export const dynamic = 'force-dynamic';
 
-// Statistik transparansi untuk halaman depan: hanya angka gabungan, tanpa data pribadi.
 export const GET = handle(async (req) => {
   rateLimit(`landing:${clientIp(req)}`, 120, 60 * 1000);
   const [a] = await query(
@@ -27,7 +26,6 @@ export const GET = handle(async (req) => {
     resolved: Number(a.resolved),
     in_process: Number(a.in_process),
     last_30_days: Number(a.last_30_days),
-    // Persentase selesai dihitung dari laporan yang sudah diverifikasi (PRD bagian 9).
     resolved_rate: verified ? Math.round((Number(a.resolved) / verified) * 100) : null,
     avg_resolution_hours: a.avg_minutes == null ? null : Math.round((Number(a.avg_minutes) / 60) * 10) / 10,
     by_category: byCat.map((c) => ({ category: { id: c.id, name: c.name }, total: Number(c.total), resolved: Number(c.resolved) })),

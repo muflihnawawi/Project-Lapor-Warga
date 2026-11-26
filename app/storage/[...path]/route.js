@@ -4,7 +4,6 @@ import { storageRoot } from '@/lib/server/upload';
 
 const TYPES = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png' };
 
-// Menyajikan foto yang diunggah dari folder storage (di luar /public).
 export async function GET(_req, { params }) {
   const root = storageRoot();
   const file = path.resolve(root, ...(params.path || []));

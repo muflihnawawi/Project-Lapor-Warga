@@ -17,7 +17,6 @@ export const PATCH = handle(async (req, { params }) => {
   if (user.role === 'citizen') throw Errors.forbiddenRole('Masyarakat tidak dapat mengubah status laporan');
   const report = await findAccessibleReport(user, params.reportId);
 
-  // Terima JSON atau multipart (bila ada foto penyelesaian).
   const isMultipart = (req.headers.get('content-type') || '').includes('multipart/form-data');
   let body;
   let files = [];
@@ -50,7 +49,6 @@ export const PATCH = handle(async (req, { params }) => {
   const historyId = uuid();
   try {
     await transaction(async (conn) => {
-      // Kunci baris laporan lalu periksa ulang status agar aman dari perubahan bersamaan.
       const locked = await queryOne('SELECT status, assigned_officer_id FROM reports WHERE id = ? FOR UPDATE', [report.id], conn);
       if (locked.status !== from) {
         throw new ApiError(422, 'INVALID_STATUS_TRANSITION', `Status tidak dapat diubah dari ${locked.status} ke ${to}`);

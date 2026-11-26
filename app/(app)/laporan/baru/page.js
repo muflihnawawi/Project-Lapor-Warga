@@ -22,7 +22,6 @@ export default function NewReportPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(null);
-  // Satu kunci per pengisian form: pengiriman ulang (mis. tombol diklik dua kali) tidak membuat laporan ganda.
   const idemKey = useRef(newKey());
 
   useEffect(() => { api('/categories').then((r) => setCats(r.data)).catch(() => {}); }, []);

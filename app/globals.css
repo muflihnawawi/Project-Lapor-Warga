@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --accent: 26 126 84;       /* hijau LaporWarga */
+  --accent: 26 126 84;
   --accent-soft: 236 250 243;
 }
 .theme-citizen { --accent: 26 126 84; --accent-soft: 236 250 243; }

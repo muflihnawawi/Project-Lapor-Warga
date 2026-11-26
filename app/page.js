@@ -45,7 +45,6 @@ export default function Home() {
 
   return (
     <div className="theme-citizen min-h-screen scroll-smooth bg-white">
-      {/* Navbar */}
       <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/85 backdrop-blur">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
           <Link href="/"><Logo /></Link>
@@ -78,7 +77,6 @@ export default function Home() {
         )}
       </header>
 
-      {/* Hero + cek status */}
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-emerald-100/70 blur-3xl" />
         <div className="pointer-events-none absolute -left-24 top-40 h-72 w-72 rounded-full bg-sky-100/70 blur-3xl" />
@@ -114,7 +112,6 @@ export default function Home() {
       <AnnouncementsSection />
       <StatsSection />
 
-      {/* Cara kerja */}
       <section id="cara-kerja" className="scroll-mt-16 border-y border-slate-100 bg-ink-900 py-20 text-white">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="mx-auto max-w-2xl text-center">
@@ -144,7 +141,6 @@ export default function Home() {
       <ResolvedSection reportHref={reportHref} />
       <MapSection />
 
-      {/* Kategori */}
       <section className="border-t border-slate-100 bg-slate-50/70 py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-wrap items-end justify-between gap-4">
@@ -169,7 +165,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Peran */}
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <h2 className="text-center text-3xl font-extrabold tracking-tight">Satu platform, tiga peran</h2>
@@ -191,7 +186,6 @@ export default function Home() {
 
       <FaqSection />
 
-      {/* CTA */}
       <section className="px-4 pb-20 sm:px-6">
         <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 to-[#1d6fd1] px-6 py-12 text-center text-white sm:px-12">
           <h2 className="text-3xl font-extrabold tracking-tight">Bersama menjaga lingkungan yang lebih baik</h2>

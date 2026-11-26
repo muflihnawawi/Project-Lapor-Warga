@@ -24,7 +24,6 @@ function FitBounds({ points }) {
   return null;
 }
 
-/** Peta dengan banyak titik laporan, diwarnai sesuai status. */
 export default function MultiMapInner({ points, height = 420, renderPopup }) {
   return (
     <MapContainer center={[-2.5, 118]} zoom={5} style={{ height, width: '100%' }} scrollWheelZoom={false}>

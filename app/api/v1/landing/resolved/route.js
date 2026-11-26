@@ -5,7 +5,6 @@ import { rateLimit } from '@/lib/server/rateLimit';
 
 export const dynamic = 'force-dynamic';
 
-// Laporan publik yang sudah selesai, dengan foto sebelum/sesudah yang ditandai layak tampil oleh admin.
 export const GET = handle(async (req) => {
   rateLimit(`landing:${clientIp(req)}`, 120, 60 * 1000);
   const rows = await query(

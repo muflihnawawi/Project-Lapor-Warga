@@ -10,6 +10,5 @@ export const GET = handle(async (req, { params }) => {
   const r = await queryOne(`${REPORT_SELECT} AND r.report_number = ? AND r.visibility = 'public'`, [number]);
   if (!r) throw Errors.notFound('Laporan publik tidak ditemukan');
   const photos = await getPhotos([r.id], { onlyPublic: true });
-  // Sertakan id internal agar klien dapat memuat komentar; identitas pelapor tetap tidak dikirim.
   return ok({ id: r.id, ...serializePublic(r, photos) });
 });

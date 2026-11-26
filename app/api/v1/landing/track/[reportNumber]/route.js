@@ -6,8 +6,6 @@ import { REPORT_NUMBER_RE, LEGACY_NUMBER_RE } from '@/lib/server/reports';
 
 export const dynamic = 'force-dynamic';
 
-// Cek status lewat nomor laporan tanpa login.
-// Sengaja hanya mengembalikan status dan tanggal: tanpa judul, foto, lokasi, catatan, atau identitas.
 export const GET = handle(async (req, { params }) => {
   rateLimit(`track:${clientIp(req)}`, 20, 60 * 1000);
   const number = String(params.reportNumber || '').trim().toUpperCase();

@@ -6,7 +6,6 @@ import { ImagePlus, X } from 'lucide-react';
 export const MAX_SIZE = 5 * 1024 * 1024;
 const TYPES = ['image/jpeg', 'image/png'];
 
-/** Validasi foto di sisi klien sebelum dikirim (server tetap memvalidasi ulang). */
 export function checkFiles(files) {
   for (const f of files) {
     if (!TYPES.includes(f.type)) return `Format "${f.name}" tidak didukung. Gunakan JPG atau PNG.`;

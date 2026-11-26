@@ -41,7 +41,6 @@ const Panel = ({ title, children, tone }) => (
   </div>
 );
 
-/* ---------- Masyarakat (pemilik) ---------- */
 export function CitizenActions({ report }) {
   const router = useRouter();
   const [confirm, setConfirm] = useState(false);
@@ -73,7 +72,6 @@ export function CitizenActions({ report }) {
   );
 }
 
-/* ---------- Petugas ---------- */
 export function OfficerActions({ report, onChanged }) {
   const [modal, setModal] = useState(null);
   const [notes, setNotes] = useState('');
@@ -136,7 +134,6 @@ export function OfficerActions({ report, onChanged }) {
   );
 }
 
-/* ---------- Admin ---------- */
 export function AdminActions({ report, onChanged }) {
   const router = useRouter();
   const [modal, setModal] = useState(null);
@@ -196,7 +193,6 @@ export function AdminActions({ report, onChanged }) {
         <button className="btn w-full text-rose-600 hover:bg-rose-50" onClick={() => open('delete')}><Trash2 className="h-4 w-4" /> Hapus laporan</button>
       </Panel>
 
-      {/* Verifikasi */}
       <Modal open={modal === 'verify'} onClose={close} title="Verifikasi laporan"
         footer={<><button className="btn-secondary" onClick={close}>Batal</button>
           <button className="btn-primary" disabled={busy} onClick={() => changeStatus('verified', { notes: form.notes || undefined })}>{busy && <Spinner className="h-4 w-4" />} Verifikasi</button></>}>
@@ -204,7 +200,6 @@ export function AdminActions({ report, onChanged }) {
         <Field label="Catatan (opsional)"><textarea className="input" value={form.notes || ''} onChange={set('notes')} /></Field>
       </Modal>
 
-      {/* Tolak */}
       <Modal open={modal === 'reject'} onClose={close} title="Tolak laporan"
         footer={<><button className="btn-secondary" onClick={close}>Batal</button>
           <button className="btn-danger" disabled={busy} onClick={() => changeStatus('rejected', { reason: form.reason, notes: form.notes || undefined })}>{busy && <Spinner className="h-4 w-4" />} Tolak laporan</button></>}>
@@ -213,7 +208,6 @@ export function AdminActions({ report, onChanged }) {
         </Field>
       </Modal>
 
-      {/* Tugaskan / ganti petugas */}
       <Modal open={modal === 'assign' || modal === 'reassign'} onClose={close} title={modal === 'assign' ? 'Tugaskan petugas' : 'Ganti petugas'}
         footer={<><button className="btn-secondary" onClick={close}>Batal</button>
           <button className="btn-primary" disabled={busy} onClick={() =>
@@ -243,7 +237,6 @@ export function AdminActions({ report, onChanged }) {
         </div>
       </Modal>
 
-      {/* Visibilitas */}
       <Modal open={modal === 'visibility'} onClose={close} title="Visibilitas laporan publik"
         footer={<><button className="btn-secondary" onClick={close}>Batal</button>
           <button className="btn-primary" disabled={busy} onClick={() =>
@@ -256,7 +249,6 @@ export function AdminActions({ report, onChanged }) {
               <button key={v} type="button" onClick={() => setForm({
                 ...form,
                 visibility: v,
-                // Saat dijadikan publik tanpa foto terpilih, pilih semua foto agar tidak terlewat.
                 ids: v === 'public' && !form.ids?.length ? report.photos.map((p) => p.id) : form.ids,
               })}
                 className={`rounded-xl border p-3 text-left ${form.visibility === v ? 'border-accent bg-accent/5 ring-2 ring-accent/20' : 'border-slate-200'}`}>
@@ -301,7 +293,6 @@ export function AdminActions({ report, onChanged }) {
         </div>
       </Modal>
 
-      {/* Hapus */}
       <Modal open={modal === 'delete'} onClose={close} title="Hapus laporan?"
         footer={<><button className="btn-secondary" onClick={close}>Batal</button>
           <button className="btn-danger" disabled={busy} onClick={async () => {
